@@ -1,52 +1,50 @@
 import mongoose from "mongoose";
-import { EventModel } from "./event.model.js";
 
-const ticketSchema = new mongoose.Schema({
+const TicketSchema = new mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'User'
   },
-  eventId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Event',
-    required: true,
+  movie: {
+      type: Schema.Types.ObjectId,
+      ref: 'Movie'
   },
-  seats: [{
-    type: String, 
-    required: true,
+  showtime: {
+      type: String,
+      required: true
+  },
+  seat: [{
+      type: String,
+      required: true
   }],
-  paymentDetails: {
-    transactionId: {
-      type: String, 
-      required: true,
-    },
-    amount: {
+  price: {
       type: Number,
-      required: true,
-    },
-    method: {
-      type: String,
-      required: true,
-    },
-    status: {
-      type: String,
-      required: true,
-    }
+      required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  status: {
+      type: String,
+      enum: ['Booked', 'Cancelled', 'Pending'],
+      default: 'Pending'
   },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  }
-});
+  paymentDetails: {
+      transactionId: {
+        type: String, 
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      method: {
+        type: String,
+        required: true,
+      },
+      status: {
+        type: String,
+        required: true,
+      }
+    },
+    
+},{timestamps : true});
 
-ticketSchema.pre('save', function(next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
-export const TicketModel = mongoose.model('Ticket', ticketSchema);
+export const MovieTicket = mongoose.model('MovieTicket', TicketSchema);
