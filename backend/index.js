@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import theaterRouter from './routes/theater.route.js'
 import movieRouter from './routes/movie.route.js'
+import ticketRouter from './routes/ticket.route.js'
 import cors from 'cors';
 
 dotenv.config({});
@@ -43,6 +44,7 @@ app.options('*', cors(corsOption));  // Allow preflight requests
 app.use('/api/v1/user',userRouter);
 app.use('/api/v1/theater', theaterRouter);
 app.use('/api/v1/movie', movieRouter);
+app.use('/api/v1/ticket', ticketRouter);
 
 
 app.listen(PORT, ()=>{

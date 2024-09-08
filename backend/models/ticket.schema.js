@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 const TicketSchema = new mongoose.Schema({
-  userId: {
+  user: {
       type: Schema.Types.ObjectId,
       ref: 'User'
   },
@@ -13,7 +13,7 @@ const TicketSchema = new mongoose.Schema({
       type: String,
       required: true
   },
-  seat: [{
+  seats: [{
       type: String,
       required: true
   }],
@@ -25,26 +25,27 @@ const TicketSchema = new mongoose.Schema({
       type: String,
       enum: ['Booked', 'Cancelled', 'Pending'],
       default: 'Pending'
-  },
-  paymentDetails: {
+  },paymentDetails: {
+    type: new Schema({
       transactionId: {
-        type: String, 
-        required: true,
+        type: String,
+        required: true
       },
       amount: {
         type: Number,
-        required: true,
+        required: true
       },
       method: {
         type: String,
-        required: true,
+        required: true
       },
       status: {
         type: String,
-        required: true,
+        required: true
       }
-    },
-    
-},{timestamps : true});
+    }, { _id: false }),
+    required: false, 
+  }
+}, { timestamps: true });
 
 export const MovieTicket = mongoose.model('MovieTicket', TicketSchema);

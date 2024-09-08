@@ -3,23 +3,23 @@ import SideNavBar from "./SideNavBar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = false;
+  const user = true;
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
   return (
     <>
       <SideNavBar user={user}/>
-    <div className="p-5 border-b text-md hidden md:flex items-center justify-between shadow-md sticky top-0 bg-gray-200 z-10">
+    <div className={`${user ? 'p-5' : 'p-6'} border-b text-md hidden md:flex items-center justify-between shadow-md sticky top-0 bg-[#01041c] z-10`}>
       <div>
         <h1 className="text-3xl font-bold sm:ml-5 lg:ml-14 ">
-          <span className="text-[#008cff]">Quick</span>{" "}
+          <span className="text-[#FAF6F0]">Quick</span>{" "}
           <span className="text-[#ff7300]">Seats</span>
         </h1>
       </div>
 
       <div className="lg:mr-8">
-        <ul className="hidden md:flex items-center justify-center gap-10 text-[#000000]">
+        <ul className="hidden md:flex items-center justify-center gap-10 text-[#fff]">
           {user ? (
             <>
               <li className="cursor-pointer">Home</li>

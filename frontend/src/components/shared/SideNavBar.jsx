@@ -7,32 +7,32 @@ const SideNavBar = ({ user }) => {
   };
 
   return (
-    <div className=" md:hidden sticky top-0 bg-gray-200 z-10">
+    <div className=" md:hidden sticky top-0 bg-[#01041c] z-10">
       {/* Navbar */}
-      <div className="flex items-center justify-between p-4 shadow-md ">
+      <div className="flex items-center justify-between p-4 shadow-md text-white">
         <button onClick={toggleSidebar} className="p-2 text-2xl">
           <i className="fa-solid fa-bars"></i>
         </button>
 
         <h1 className="text-3xl font-bold ml-auto">
-          <span className="text-[#008cff]">Quick</span>{" "}
+          <span className="text-[#FAF6F0]">Quick</span>{" "}
           <span className="text-[#ff7300]">Seats</span>
         </h1>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-200 text-gray-800 transition-transform ${
+        className={`fixed top-0 left-0 h-full w-64 text-white bg-[#01041c] transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between p-6 bg-gray-700 text-gray-100">
+        <div className="flex items-center justify-between p-6 bg-[#01041c] text-gray-100 border-b ">
           <h2 className="text-xl font-bold ml-2">Menu</h2>
           <button onClick={toggleSidebar} className="text-2xl">
             <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <ul className="space-y-4 p-4">
+        <ul className="space-y-4 p-4 ">
           {user ? (
             <>
               <li className="hover:bg-gray-300 p-2 rounded cursor-pointer ">
