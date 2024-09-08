@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
       <SideNavBar user={user}/>
-    <div className="p-5 border-b text-md hidden md:flex items-center justify-between shadow-md sticky top-0 bg-white">
+    <div className="p-5 border-b text-md hidden md:flex items-center justify-between shadow-md sticky top-0 bg-gray-200 z-10">
       <div>
         <h1 className="text-3xl font-bold sm:ml-5 lg:ml-14 ">
           <span className="text-[#008cff]">Quick</span>{" "}

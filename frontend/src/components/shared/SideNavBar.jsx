@@ -7,11 +7,11 @@ const SideNavBar = ({ user }) => {
   };
 
   return (
-    <div className=" md:hidden sticky top-0 bg-gray-200">
+    <div className=" md:hidden sticky top-0 bg-gray-200 z-10">
       {/* Navbar */}
       <div className="flex items-center justify-between p-4 shadow-md ">
         <button onClick={toggleSidebar} className="p-2 text-2xl">
-          {!isOpen && <i className="fa-solid fa-bars"></i>}
+          <i className="fa-solid fa-bars"></i>
         </button>
 
         <h1 className="text-3xl font-bold ml-auto">
@@ -26,7 +26,7 @@ const SideNavBar = ({ user }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between p-5 bg-gray-700 text-gray-100">
+        <div className="flex items-center justify-between p-6 bg-gray-700 text-gray-100">
           <h2 className="text-xl font-bold ml-2">Menu</h2>
           <button onClick={toggleSidebar} className="text-2xl">
             <i className="fa-solid fa-xmark"></i>
