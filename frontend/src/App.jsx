@@ -1,36 +1,24 @@
-import React from 'react'
-import Navbar from './components/shared/Navbar.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import HomePage from './components/home/HomePage.jsx'
-import Footer from './components/shared/Footer.jsx'
-import Login from './components/auth/Login.jsx'
-import Signup from './components/auth/Signup.jsx'
-
-
-const appRouter = createBrowserRouter([
-  {
-    path : '/',
-    element : <HomePage />
-  },
-  {
-    path : '/login',
-    element : <Login />
-  },
-  {
-    path : '/signup',
-    element : <Signup />
-  }
-])
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/shared/Navbar.jsx';
+import Footer from './components/shared/Footer.jsx';
+import HomePage from './components/home/HomePage.jsx';
+import Form from './components/auth/Form.jsx';
 
 const App = () => {
-  
   return (
-    <>
-      <Navbar />
-      <RouterProvider router={appRouter}  />
-      <Footer />
-    </>
-  )
+    <Router>
+      <>
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Form initialTab={0} />} />
+          <Route path="/register" element={<Form initialTab={1} />} />
+        </Routes>
+        
+      </>
+    </Router>
+  );
 }
 
-export default App
+export default App;

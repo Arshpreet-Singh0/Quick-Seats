@@ -10,7 +10,6 @@ export const signUp = async (req,res) => {
   try {
     
     const { username, email, password } = req.body;
-    console.log(username, email, password);
     
 
     if (!username || !email || !password) {
@@ -22,7 +21,6 @@ export const signUp = async (req,res) => {
 
     const user = await UserModel.findOne({ email });
     
-
     if (user) {
       return res.status(400).json({
         message: "User already exists with this email",
@@ -50,6 +48,7 @@ export const signUp = async (req,res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
 
     if (!email || !password) {
       res.status(400).json({

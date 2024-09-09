@@ -1,15 +1,22 @@
 import React from 'react'
 import Events from './Events.jsx'
 import Filters from './Filters.jsx'
+import Navbar from '../shared/Navbar.jsx'
+import Footer from '../shared/Footer.jsx'
 
 const HomePage = () => {
   return (
+    <>
+    <Navbar />
     <div className='flex justify-center w-full h-full'>
     <div className='w-[90%] items-center'>
       <Filters />
       <Events />
     </div>
     </div>
+
+    <Footer />
+    </>
   )
 }
 

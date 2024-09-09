@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import SideNavBar from "./SideNavBar";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = true;
+  const {user} = useSelector(store=>store.auth);
+  console.log(user);
+  
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -22,7 +26,7 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center justify-center gap-10 text-[#fff]">
           {user ? (
             <>
-              <li className="cursor-pointer">Home</li>
+              <li className="cursor-pointer"><Link to={'/'}>Home</Link></li>
               <li className="cursor-pointer">Events</li>
               <li className="cursor-pointer">My Bookings</li>
               <li className="cursor-pointer">Support</li>
@@ -57,7 +61,7 @@ const Navbar = () => {
             <>
               <li className="cursor-pointer">Manage Bookings</li>
               <li className="cursor-pointer">About</li>
-              <li className="cursor-pointer">Login / Signup</li>
+              <li className="cursor-pointer"><Link to={'/login'}>Login / Signup</Link></li>
             </>
           )}
         </ul>
