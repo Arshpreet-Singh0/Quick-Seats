@@ -38,7 +38,7 @@ const filters = [
 const Filters = () => {
   return (
     <>
-    <h1 className="text-white mt-3 mx-4 md:text-xl md:mx-16">Categories : </h1>
+    <h1 className="text-white mt-3 mx-4 md:text-xl md:mx-16 opacity-85">Categories : </h1>
     <div className="flex justify-center w-full h-24 mt-5 overflow-x-auto no-scrollbar mb-14">
       
       <div className="flex space-x-4 md:space-x-16 w-auto min-w-0 text-white filter px-4">

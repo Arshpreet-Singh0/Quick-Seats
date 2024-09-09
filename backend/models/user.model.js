@@ -13,9 +13,6 @@ const UserSchema = mongoose.Schema({
         type : String,
         required : true,
     },
-    passport :{
-        type : String,
-    },
     role: {
         type: String,
         enum: ['user', 'admin'],

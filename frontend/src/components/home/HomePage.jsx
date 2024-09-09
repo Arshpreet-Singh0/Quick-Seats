@@ -4,7 +4,7 @@ import Filters from './Filters.jsx'
 
 const HomePage = () => {
   return (
-    <div className='flex justify-center w-full'>
+    <div className='flex justify-center w-full h-full'>
     <div className='w-[90%] items-center'>
       <Filters />
       <Events />
