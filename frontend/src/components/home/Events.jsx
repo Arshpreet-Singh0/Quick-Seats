@@ -43,7 +43,7 @@ const Events = () => {
         <h1 className="text-4xl text-[white] mb-2 opacity-85">Popular </h1>
         <h1 className="text-white opacity-65">Sell All <i className="fa fa-chevron-right"></i></h1>
       </div>
-      <div className="md:h-[55vh] w-full flex items-center justify-evenly flex-wrap p-5 ">
+      <div className=" w-full flex items-center justify-evenly flex-wrap p-5 ">
         {movies.map((movie) => {
           return <Card movie={movie} />;
         })}

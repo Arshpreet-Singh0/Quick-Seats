@@ -23,7 +23,6 @@ const Login = () => {
   }
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    console.log(input);
 
     try {
       const res = await axios.post(`${USER_API_ENDPOINT}/login`, input,{

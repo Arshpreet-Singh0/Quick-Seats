@@ -1,16 +1,41 @@
 import React, { useState } from "react";
 import SideNavBar from "./SideNavBar";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { USER_API_ENDPOINT } from "../../utils/constant";
+import {setUser} from '@redux/authSlice';
+import axios from 'axios'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user} = useSelector(store=>store.auth);
-  console.log(user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(
+        `${USER_API_ENDPOINT}/logout`, 
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      
+      if (res?.data?.success) {
+        dispatch(setUser(null));
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   return (
     <>
       <SideNavBar user={user}/>
@@ -34,7 +59,7 @@ const Navbar = () => {
           {user ? (
             <>
               <li className="cursor-pointer"><Link to={'/'}>Home</Link></li>
-              <li className="cursor-pointer">Events</li>
+              <li className="cursor-pointer"><Link to={'/allmovies'}>All movies</Link></li>
               <li className="cursor-pointer">My Bookings</li>
               <li className="cursor-pointer">Support</li>
               <div className="w-12 h-12 border rounded-full">
@@ -49,11 +74,7 @@ const Navbar = () => {
                   <div className="absolute right-4  mt-2 w-44 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="my-1">
                       <ul>
-                        <li className="block px-4 py-2  text-gray-700 hover:bg-gray-100 cursor-pointer">
-                          <i className="fa-solid fa-user"></i>&nbsp;&nbsp;My
-                          Profile
-                        </li>
-                        <li className="block px-4 py-2  text-gray-700 hover:bg-gray-100 cursor-pointer">
+                        <li className="block px-4 py-2  text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={handleLogout}>
                           <i className="fa-solid fa-right-from-bracket"></i>
                           &nbsp;&nbsp;Logout
                         </li>
@@ -66,8 +87,8 @@ const Navbar = () => {
             </>
           ) : (
             <>
+              <li className="cursor-pointer"><Link to={'/'}>Home</Link></li>
               <li className="cursor-pointer"><Link to={'/allmovies'}>All movies</Link></li>
-              <li className="cursor-pointer">About</li>
               <li className="cursor-pointer"><Link to={'/login'}>Login / Signup</Link></li>
             </>
           )}
