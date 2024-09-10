@@ -14,7 +14,7 @@ const Card = ({movie}) => {
 
             </div>
             <p className='text-sm opacity-90 p-1'><span className='opacity-55'>Language :</span> {movie.language}</p>
-            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2'>Book Now</button>
+            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2'>See Details</button>
         </div>
 
     </div>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {setUser} from '@redux/authSlice';
 import { USER_API_ENDPOINT } from "../../utils/constant";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -29,16 +30,17 @@ const Login = () => {
         withCredentials : true,
       })
 
-      if(res?.data?.success){
-        console.log(res?.data?.user);
-        
+      if (res?.data?.success) {
+        toast.success(res.data.message || "Login successful!");
         dispatch(setUser(res?.data?.user));
-        navigate('/');
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      } else {
+        toast.error(res.data.message || "Login failed!");
       }
-      
     } catch (error) {
-      console.log(error);
-      
+      toast.error(error.response?.data?.message || "An error occurred!");
     }
     
   }
@@ -56,6 +58,7 @@ const Login = () => {
 
       <button className="w-full bg-[#ff7300] p-2 rounded-xl">Login</button>
       </form>
+      <ToastContainer position="top-left"/>
    </div>
   )
 };

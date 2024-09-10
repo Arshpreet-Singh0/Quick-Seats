@@ -22,6 +22,11 @@ const Navbar = () => {
         </h1>
       </div>
 
+      {/* <div className="hidden lg:block">
+        <input type="text" className="w-80 p-1 rounded-sm placeholder:text-center" placeholder="Search Movie, Event etc."/>
+        <button className="bg-[#ff7300] p-1 px-2 rounded-sm ml-5">Search</button>
+      </div> */}
+
       <div className="lg:mr-8">
         <ul className="hidden md:flex items-center justify-center gap-10 text-[#fff]">
           {user ? (
@@ -59,7 +64,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className="cursor-pointer">Manage Bookings</li>
+              <li className="cursor-pointer"><Link to={'/allmovies'}>All movies</Link></li>
               <li className="cursor-pointer">About</li>
               <li className="cursor-pointer"><Link to={'/login'}>Login / Signup</Link></li>
             </>
