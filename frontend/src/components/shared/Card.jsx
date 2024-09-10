@@ -8,9 +8,9 @@ const Card = ({movie}) => {
         </div>
         <div className='p-4'>
             <h1 className='text-2xl opacity-85 p-1'>{movie.name}</h1>
-            <div className='flex justify-between'>
-            <span className='text-md opacity-90 p-1'><span className='text-md'><i class="fa-regular fa-clock"></i></span>&nbsp;&nbsp;{movie.time}</span>
-            <span className='text-md opacity-90 p-1'><span className='text-md'><i class="fa-regular fa-calendar"></i></span>&nbsp;&nbsp;{movie.date}</span>
+            <div className='hidden md:flex justify-between'>
+            <span className='text-md opacity-90 p-1'><span className='text-md'><i className="fa-regular fa-clock"></i></span>&nbsp;&nbsp;{movie.time}</span>
+            <span className='text-md opacity-90 p-1'><span className='text-md'><i className="fa-regular fa-calendar"></i></span>&nbsp;&nbsp;{movie.date}</span>
 
             </div>
             <p className='text-sm opacity-90 p-1'><span className='opacity-55'>Language :</span> {movie.language}</p>

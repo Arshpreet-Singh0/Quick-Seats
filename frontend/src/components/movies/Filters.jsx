@@ -36,7 +36,7 @@ const Filters = () => {
 
       
   return (
-    <div className='text-white ml-5'>
+    <div className='text-white ml-5 md:p-2'>
         {filters.map((filter, index) => (
         <div key={index} className="mb-4">
           <h3 className="font-bold mb-2 text-lg">{filter.name}</h3>

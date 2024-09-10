@@ -17,8 +17,10 @@ const Navbar = () => {
     <div className={`${user ? 'p-5' : 'p-6'} border-b text-md hidden md:flex items-center justify-between shadow-md sticky top-0 bg-[#01041c] z-10`}>
       <div>
         <h1 className="text-3xl font-bold sm:ml-5 lg:ml-14 ">
+          <Link to={'/'}>
           <span className="text-[#FAF6F0]">Quick</span>{" "}
           <span className="text-[#ff7300]">Seats</span>
+          </Link>
         </h1>
       </div>
 

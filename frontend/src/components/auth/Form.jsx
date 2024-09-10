@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Box, Tabs, Tab } from '@mui/material';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import Navbar from '../shared/Navbar.jsx';
 
 export default function Form({ initialTab = 0 }) {
   const [tab, setTab] = useState(initialTab);
@@ -28,7 +29,10 @@ export default function Form({ initialTab = 0 }) {
   };
 
   return (
+    <>
+    <Navbar />
     <Box sx={{ display: 'flex', height: '100vh' }}>
+      
       <Box
         sx={{
           width: { xs: '100%', md: '40%' }, 
@@ -61,5 +65,6 @@ export default function Form({ initialTab = 0 }) {
         }}
       />
     </Box>
+    </>
   );
 }
