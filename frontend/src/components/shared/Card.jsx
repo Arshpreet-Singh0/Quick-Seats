@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Card = ({movie}) => {
   const navigate = useNavigate();
   const handleClick = (id)=>{
-      navigate(`movie/${id}`);
+      navigate(`/movie/${id}`);
   }
   return (
     <div className=' w-80 h-auto rounded-2xl bg-[#1d1d1d] m-5 text-white'>

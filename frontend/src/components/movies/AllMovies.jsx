@@ -4,6 +4,7 @@ import Card from '../shared/Card';
 const movies = [
     {
       name: "Inception",
+      id : 1,
       description: "Sci-Fi/Thriller",
       time: "2 : 10 : 21",
       date: "02-10-2024",
@@ -13,6 +14,7 @@ const movies = [
     {
       name: "The Lion King",
       description: "Animation/Family",
+      id : 2,
       time: "2 : 10 : 21",
       date: "02-10-2024",
       language: "English",
@@ -23,6 +25,7 @@ const movies = [
       description: "Action/Adventure",
       time: "2 : 10 : 21",
       date: "02-10-2024",
+      id : 3,
       language: "English",
       img: "https://cdn.britannica.com/60/182360-050-CD8878D6/Avengers-Age-of-Ultron-Joss-Whedon.jpg",
     },
@@ -31,6 +34,7 @@ const movies = [
       description: "Musical/Theater",
       time: "2 : 10 : 21",
       date: "02-10-2024",
+      id : 4,
       language: "English",
       img: "https://i.ytimg.com/vi/DSCKfXpAGHc/maxresdefault.jpg",
     },

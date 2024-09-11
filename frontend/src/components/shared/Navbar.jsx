@@ -74,6 +74,7 @@ const Navbar = () => {
                   <div className="absolute right-4  mt-2 w-44 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="my-1">
                       <ul>
+                        <li className="text-gray-700 py-2 text-xl px-4">{user.username}</li>
                         <li className="block px-4 py-2  text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={handleLogout}>
                           <i className="fa-solid fa-right-from-bracket"></i>
                           &nbsp;&nbsp;Logout

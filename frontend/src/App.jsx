@@ -5,7 +5,8 @@ import Footer from './components/shared/Footer.jsx';
 import HomePage from './components/home/HomePage.jsx';
 import Form from './components/auth/Form.jsx';
 import MoviePage from './components/movies/MoviePage.jsx'
-import MovieDetailsPage from './components/movies/MovieDetailsPage.jsx';
+import MovieDetailsPage from './components/movieDetails/movieDetailsPage.jsx';
+
 
 const App = () => {
   return (
