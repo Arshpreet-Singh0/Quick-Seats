@@ -62,6 +62,7 @@ const MovieDetailsPage = () => {
       <Navbar />
       <HeroSection movie={movie}/>
       <About movie={movie}/>
+      
       <Footer />
     </div>
   )

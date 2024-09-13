@@ -11,7 +11,7 @@ const HeroSection = ({ movie }) => {
           backgroundPosition: "center",
         }}
       >
-        <div className="flex w-full px-6 md:px-0 lg:w-[70%] h-[80%] bg-[#000] rounded-lg">
+        <div className="flex w-full px-6 md:px-0 lg:w-[70%] h-[80%] bg-[#1c2a36] rounded-lg">
           <div className="md:w-[30%]">
             <img
               src={movie.img}
@@ -55,7 +55,7 @@ const HeroSection = ({ movie }) => {
               </p>
             </div>
             <div className="mt-7">
-              <button className="py-3 px-5 md:px-10 bg-[#ff7300] rounded text-black">
+              <button className="py-3 px-5 md:px-10 bg-[#ff7300] rounded-sm text-black">
                 Book Tickets
               </button>
             </div>
