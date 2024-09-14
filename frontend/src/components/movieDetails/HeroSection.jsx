@@ -1,6 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = ({ movie }) => {
+  const navigate = useNavigate();
+  const handleClick = (id)=>{
+    navigate(`shows`)
+  }
   return (
     <div className="flex justify-center w-full md:bg-[#1A1A1A]">
       <div
@@ -55,7 +60,7 @@ const HeroSection = ({ movie }) => {
               </p>
             </div>
             <div className="mt-7">
-              <button className="py-3 px-5 md:px-10 bg-[#ff7300] rounded-sm text-black">
+              <button className="py-3 px-5 md:px-10 bg-[#ff7300] rounded-sm text-black" onClick={()=>handleClick(movie.id)}>
                 Book Tickets
               </button>
             </div>

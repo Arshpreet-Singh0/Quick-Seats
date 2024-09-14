@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Card = ({movie}) => {
   const navigate = useNavigate();
-  const handleClick = (id)=>{
-      navigate(`/movie/${id}`);
+  const handleClick = (name)=>{
+      navigate(`/movie/${name}`);
   }
   return (
     <div className=' w-80 h-auto rounded-2xl bg-[#1d1d1d] m-5 text-white'>
@@ -19,7 +19,7 @@ const Card = ({movie}) => {
 
             </div>
             <p className='text-sm opacity-90 p-1'><span className='opacity-55'>Language :</span> {movie.language}</p>
-            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2' onClick={()=>handleClick(movie.id)}>See Details</button>
+            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2' onClick={()=>handleClick(movie.name)}>See Details</button>
         </div>
 
     </div>

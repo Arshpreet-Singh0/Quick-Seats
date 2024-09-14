@@ -49,10 +49,9 @@ const movies = [
 
 
 const MovieDetailsPage = () => {
-  const { id } = useParams();
-  console.log(id);
+  const { name } = useParams();
 
-  const movie = movies.find((m)=> m.id==id);
+  const movie = movies.find((m)=> m.name==name);
 
   console.log(movie);
   

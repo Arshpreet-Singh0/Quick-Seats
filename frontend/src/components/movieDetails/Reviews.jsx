@@ -1,5 +1,8 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
+import { useGetUserLocation } from "../../hooks/useGetUserLocation";
+import { useSelector } from "react-redux";
+
 const reviews = [
     {
       username: "john_doe",
@@ -40,6 +43,10 @@ const reviews = [
   
   
 const Reviews = () => {
+  // useGetUserLocation();
+  // const {city} = useSelector(store=>store.location);
+  // console.log(city);
+  
   return (
     <div>
       <div className="flex justify-between items-center mt-5">
@@ -51,14 +58,18 @@ const Reviews = () => {
 
       <div className="flex mt-10 overflow-x-auto no-scrollbar gap-5">
       {
-        reviews.map((review)=>{
+        reviews.map((review, idx)=>{
             return (
-                <div className="">
+                <div className="" key={idx}>
                     <ReviewCard review={review} />
                 </div>
             )
         })
       }
+      </div>
+
+      <div className="flex items-center mt-8">
+        <button className="bg-[#ff7300] px-4 py-2 rounded-sm">Give Review</button>
       </div>
 
     </div>
