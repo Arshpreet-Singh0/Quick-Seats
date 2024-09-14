@@ -21,6 +21,12 @@ const movieShows = [
         date: "03-10-2024",
         available_seats: 100,
       },
+      {
+        show_id: 99,
+        time: "10:00 PM",
+        date: "03-10-2024",
+        available_seats: 100,
+      },
     ],
   },
   {
@@ -71,6 +77,18 @@ const movieShows = [
         time: "7:00 PM",
         date: "02-10-2024",
         available_seats: 180,
+      },
+      {
+        show_id: 109,
+        time: "9:30 PM",
+        date: "02-10-2024",
+        available_seats: 130,
+      },
+      {
+        show_id: 109,
+        time: "9:30 PM",
+        date: "02-10-2024",
+        available_seats: 130,
       },
       {
         show_id: 109,
@@ -135,6 +153,37 @@ const ShowsPage = () => {
   const handleShowDateChange = (date) => {
     setShowDate(date);
   };
+  const groupShowsByTheater = (data) => {
+    const showsByTheater = {};
+    console.log(data);
+    
+  
+    // Iterate over each show in the input data's shows array
+    data.shows.forEach((show) => {
+      const { theater } = show;
+  
+      // If the theater doesn't exist in the result object, initialize an empty array
+      if (!showsByTheater[theater]) {
+        showsByTheater[theater] = [];
+      }
+  
+      // Push the show to the appropriate theater array
+      showsByTheater[theater].push({
+        show_id: show.show_id,
+        time: show.time,
+        date: show.date,
+        available_seats: show.available_seats,
+      });
+    });
+  
+    // Convert the result into an array of objects
+    const result = Object.keys(showsByTheater).map((theater) => ({
+      theater,
+      shows: showsByTheater[theater],
+    }));
+  
+    return result;
+  };
 
   const [currDateShows, setCurrDateShows] = useState([]);
 
@@ -142,21 +191,22 @@ const ShowsPage = () => {
     const shows = showsGroupedByDate.find((show) => {
       return show.date == showDate;
     });
+    const res = groupShowsByTheater(shows);
 
-    setCurrDateShows(shows);
+    setCurrDateShows(res);
   }, [showDate]);
 
   console.log(currDateShows);
 
   return (
-    <div>
-      <Navbar />
+    <div className="w-full">
+        <Navbar />
 
-      <div className="flex flex-col items-center m-10  w-full">
-        <div className="w-[70%] p-4">
-          <h1 className="text-4xl text-white">{name} - English</h1>
+      <div className="flex flex-col items-center m-10">
+        <div className="w-full md:w-[70%] p-4">
+          <h1 className="text-3xl md:text-4xl text-white">{name} - English</h1>
         </div>
-        <div className="flex gap-3 items-center h-14  w-[70%] mt-5 p-4 shadow-white shadow-sm">
+        <div className="flex gap-3 items-center h-14 w-full md:w-[70%] mt-5 p-4 shadow-white shadow-sm">
           {showsGroupedByDate.map((item, idx) => (
             <div
               className={`text-white ${
@@ -169,7 +219,7 @@ const ShowsPage = () => {
             </div>
           ))}
         </div>
-      <div className="w-[70%] mt-10">{<Shows allShow={currDateShows} />}</div>
+      <div className="md:w-[70%] mt-10">{<Shows allShow={currDateShows} />}</div>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
 import React from "react";
 
 const Shows = ({ allShow }) => {
-  console.log(allShow.shows);
 
   return (
     <div className="">
-      {allShow.shows &&
-        allShow.shows.map((item) => (
-          <div className="flex items-center p-4 shadow-white shadow-sm text-white mt-2 ">
+      {allShow &&
+        allShow.map((item, idx) => (
+          <div key={idx} className="flex items-center p-4 shadow-white shadow-sm text-white mt-2 ">
             <div>
               <p className="text-sm">
                 <span>
@@ -23,8 +22,12 @@ const Shows = ({ allShow }) => {
                 <i className="fa-solid fa-burger"></i> Food & Beverage
               </span>
             </div>
-            <div className="ml-24">
-                <div className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black">{item?.time}</div>
+            <div className="md:flex flex-1 gap-3 md:gap-8 ml-4 md:ml-24 overflow-auto">
+                {
+                  item.shows && item.shows.map((show, idx)=>(
+                    <div key={idx} className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2">{show.time}</div>
+                  ))
+                }
             </div>
             
           </div>
