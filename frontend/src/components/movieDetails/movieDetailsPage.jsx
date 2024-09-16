@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Navbar from '../shared/Navbar.jsx'
 import Footer from '../shared/Footer.jsx'
 import HeroSection from './HeroSection.jsx';
 import About from './About.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSingleMovie } from '../../redux/movieSlice.js';
 const movies = [
   {
     name: "Inception",
@@ -50,11 +52,13 @@ const movies = [
 
 const MovieDetailsPage = () => {
   const { name } = useParams();
-
-  const movie = movies.find((m)=> m.name==name);
-
-  console.log(movie);
+  const dispatch  = useDispatch();
   
+  const movie = movies.find((m)=> m.name==name);
+    
+  // console.log(movie);
+  dispatch(setSingleMovie(movie));
+      
   
   return (
     <div>

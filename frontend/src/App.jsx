@@ -8,6 +8,7 @@ import MoviePage from './components/movies/MoviePage.jsx'
 import MovieDetailsPage from './components/movieDetails/movieDetailsPage.jsx';
 import Shows from './components/booking/Shows.jsx';
 import ShowsPage from './components/booking/ShowsPage.jsx';
+import SeatPage from './components/booking/SeatPage.jsx';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/allmovies' element={<MoviePage />} />
           <Route path='/movie/:name' element={<MovieDetailsPage />} />
           <Route path='/movie/:name/shows' element={<ShowsPage />} />
+          <Route path='/book/:id' element={<SeatPage />} />
         </Routes>
         
       </>

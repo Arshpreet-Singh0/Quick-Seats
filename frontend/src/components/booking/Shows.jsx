@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Shows = ({ allShow }) => {
+  const naviagte = useNavigate();
+
+  const handleShowTimeClick = (id)=>{
+    naviagte(`/book/${id}`)
+  }
 
   return (
     <div className="">
@@ -25,7 +31,7 @@ const Shows = ({ allShow }) => {
             <div className="md:flex flex-1 gap-3 md:gap-8 ml-4 md:ml-24 overflow-auto">
                 {
                   item.shows && item.shows.map((show, idx)=>(
-                    <div key={idx} className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2">{show.time}</div>
+                    <div key={idx} onClick={()=> handleShowTimeClick(show.show_id)} className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2">{show.time}</div>
                   ))
                 }
             </div>

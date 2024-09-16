@@ -44,8 +44,8 @@ const Events = () => {
         <h1 className="text-white opacity-65">Sell All <i className="fa fa-chevron-right"></i></h1>
       </div>
       <div className=" w-full flex items-center justify-evenly flex-wrap p-5 ">
-        {movies.map((movie) => {
-          return <Card movie={movie} />;
+        {movies.map((movie, idx) => {
+          return <Card movie={movie} key={idx}/>;
         })}
       </div>
     </>

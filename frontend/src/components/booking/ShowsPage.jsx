@@ -148,14 +148,14 @@ const ShowsPage = () => {
 
   const showsGroupedByDate = groupShowsByDate(movieShows);
   const [showDate, setShowDate] = useState(`${showsGroupedByDate[0].date}`);
-  console.log(showDate);
+  // console.log(showDate);
 
   const handleShowDateChange = (date) => {
     setShowDate(date);
   };
   const groupShowsByTheater = (data) => {
     const showsByTheater = {};
-    console.log(data);
+    // console.log(data);
     
   
     // Iterate over each show in the input data's shows array
@@ -196,7 +196,7 @@ const ShowsPage = () => {
     setCurrDateShows(res);
   }, [showDate]);
 
-  console.log(currDateShows);
+  // console.log(currDateShows);
 
   return (
     <div className="w-full">
