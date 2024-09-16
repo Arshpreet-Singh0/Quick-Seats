@@ -3,8 +3,11 @@ import Events from './Events.jsx'
 import Filters from './Filters.jsx'
 import Navbar from '../shared/Navbar.jsx'
 import Footer from '../shared/Footer.jsx'
+import useGetAllMovies from '../../hooks/useGetAllMovies.jsx'
+
 
 const HomePage = () => {
+  useGetAllMovies();
   return (
     <>
     <Navbar />

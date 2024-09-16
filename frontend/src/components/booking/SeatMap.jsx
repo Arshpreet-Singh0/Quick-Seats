@@ -18,13 +18,13 @@ const SeatMap = ({ seatData, handleSeatClick, selectedSeats}) => {
 
         return (
           <div
-            className={`flex items-center gap-4 ${
+            className={`flex flex-col md:flex-row justify-center items-center gap-4 ${
               isDifferentSeatType ? 'mt-12' : 'mt-4'
             }`} // Add extra space between different seat types
             key={row}
           >
-            <div className='w-20'>
-              <strong>Row {row}:</strong>
+            <div className="min-w-[60px] md:w-20 text-center">
+              <p className='opacity-75'>Row {row}:</p>
             </div>
             <div className='flex'>
               {seatData.seating[row].map((seat, index) => (
@@ -46,6 +46,9 @@ const SeatMap = ({ seatData, handleSeatClick, selectedSeats}) => {
                   </button>
                 </div>
               ))}
+            </div>
+            <div>
+              <p className='text-sm opacity-75'>Price : {seatData.seating[row][0].price}</p>
             </div>
           </div>
         );

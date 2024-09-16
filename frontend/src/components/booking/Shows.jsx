@@ -2,18 +2,22 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Shows = ({ allShow }) => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
-  const handleShowTimeClick = (id)=>{
-    naviagte(`/book/${id}`)
-  }
+  const handleShowTimeClick = (id) => {
+    navigate(`/book/${id}`);
+  };
 
   return (
     <div className="">
       {allShow &&
         allShow.map((item, idx) => (
-          <div key={idx} className="flex items-center p-4 shadow-white shadow-sm text-white mt-2 ">
-            <div>
+          <div
+            key={idx}
+            className="flex flex-col md:flex-row items-start md:items-center p-4 shadow-white shadow-sm text-white mt-2 "
+          >
+            {/* Theater Info */}
+            <div className="w-full md:w-[50%] mb-4 md:mb-0">
               <p className="text-sm">
                 <span>
                   <i className="fa-regular fa-heart mr-2 text-lg"></i>
@@ -28,18 +32,22 @@ const Shows = ({ allShow }) => {
                 <i className="fa-solid fa-burger"></i> Food & Beverage
               </span>
             </div>
-            <div className="md:flex flex-1 gap-3 md:gap-8 ml-4 md:ml-24 overflow-auto">
-                {
-                  item.shows && item.shows.map((show, idx)=>(
-                    <div key={idx} onClick={()=> handleShowTimeClick(show.show_id)} className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2">{show.time}</div>
-                  ))
-                }
-            </div>
-            
-          </div>
-          
-        ))}
 
+            {/* Showtimes */}
+            <div className="flex-1 flex flex-wrap md:flex-row gap-2 md:gap-4 overflow-auto">
+              {item.shows &&
+                item.shows.map((show, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => handleShowTimeClick(show.show_id)}
+                    className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2 cursor-pointer"
+                  >
+                    {show.time}
+                  </div>
+                ))}
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { MovieTicket } from "../models/ticket.schema.js";
-import { Movie } from "../models/theater.schema.js";
+import Movie from "../models/movie.schema.js";
 
 export const bookTicket = async (req, res) => {
   try {

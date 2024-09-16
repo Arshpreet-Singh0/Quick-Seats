@@ -1,11 +1,10 @@
-import Theater, { Movie } from "../models/theater.schema.js";
+import Movie from "../models/movie.schema.js";
+
 
 export const createMovie = async (req, res) => {
   try {
     const {
-      theater,
-      movieName,
-      audi,
+      name,
       language,
       director,
       releaseDate,
@@ -13,17 +12,17 @@ export const createMovie = async (req, res) => {
       cast,
       description,
       rating,
-      images,
+      image,
+      about
     } = req.body;
 
     if (
-      !theater ||
-      !movieName ||
-      !audi ||
+      !name ||
       !language ||
       !releaseDate ||
       !runtime ||
-      !cast
+      !cast ||
+      !image
     ) {
       return res.status(400).json({
         success: false,
@@ -31,19 +30,17 @@ export const createMovie = async (req, res) => {
       });
     }
 
-    const th = await Theater.findById(theater);
-
-    if (!th || th.user != req.id) {
+    const movie = await Movie.findOne({name});
+    
+    if(movie){
       return res.status(400).json({
-        success: false,
-        message: "Theater does not exist or not belongs to you.",
-      });
+        message : 'Movie Already Exist',
+        success : false,
+      })
     }
 
     const createdMovie = await Movie.create({
-      theater,
-      movieName,
-      audi,
+      name,
       language,
       director,
       releaseDate,
@@ -51,7 +48,8 @@ export const createMovie = async (req, res) => {
       cast,
       description,
       rating,
-      images,
+      image,
+      about
     });
 
     res.status(201).json({
@@ -67,9 +65,7 @@ export const createMovie = async (req, res) => {
 export const updateMovie = async (req, res) => {
   try {
     const {
-      theater,
-      movieName,
-      audi,
+      name,
       language,
       director,
       releaseDate,
@@ -77,23 +73,13 @@ export const updateMovie = async (req, res) => {
       cast,
       description,
       rating,
-      images,
+      image,
     } = req.body;
     const {id} = req.params;
 
-    const th = await Theater.findById(theater);
-
-    if (!th || th.user != req.id) {
-      return res.status(400).json({
-        success: false,
-        message: "Theater does not exist or not belongs to you.",
-      });
-    }
     const movie = await Movie.findById(id);
 
-    if (theater) movie.theater = theater;
-    if (movieName) movie.movieName = movieName;
-    if (audi) movie.audi = audi;
+    if (name) movie.name = name;
     if (language) movie.language = language;
     if (director) movie.director = director;
     if (releaseDate) movie.releaseDate = releaseDate;
@@ -101,7 +87,7 @@ export const updateMovie = async (req, res) => {
     if (cast) movie.cast = cast;
     if (description) movie.description = description;
     if (rating) movie.rating = rating;
-    if (images) movie.images = images;
+    if (image) movie.image = image;
 
     await movie.save();
 
@@ -116,12 +102,11 @@ export const updateMovie = async (req, res) => {
 
 export const getAllMovies = async(req, res)=>{
   try {
-    const movies = await Movie.find({}).populate({
-      path : 'theater',
-    });;
+    const movies = await Movie.find({});
 
     res.status(200).json({
       movies,
+      success : true,
     })
   } catch (error) {
     console.log(error);
@@ -129,15 +114,12 @@ export const getAllMovies = async(req, res)=>{
   }
 }
 
-export const getMovieById = async(req, res)=>{
+export const getMovieByname = async(req, res)=>{
   try {
-    const {id} = req.params;
-    console.log(id);
-    
+    const {name} = req.params;
 
-    const movie = await Movie.findById(id).populate({
-      path : 'theater',
-    });
+    const movie = await Movie.findOne({name});
+
     if(!movie){
       return res.status(200).json({
         message : 'movie does not exist',
@@ -146,6 +128,7 @@ export const getMovieById = async(req, res)=>{
     }
     res.status(200).json({
       movie,
+      success : true,
     })
   } catch (error) {
     console.log(error);

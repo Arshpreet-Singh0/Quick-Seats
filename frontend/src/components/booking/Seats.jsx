@@ -110,7 +110,7 @@ function Seats() {
 
   return (
     <>
-    <div className="w-full text-white  mb-28">
+    <div className="w-full text-white mb-28">
       <div className="flex flex-col items-center justify-center mt-10 w-full">
         <div className="w-[70%] p-2">
             <h1 className="text-2xl mb-1">{seatData.movie}</h1>
@@ -119,12 +119,10 @@ function Seats() {
         </div>
         <div className="h-10 bg-slate-800 w-full"></div>
 
-        <div className="">
+        <div className=" w-auto md:w-full">
             <SeatMap seatData={seatData} handleSeatClick={handleSeatClick} selectedSeats={selectedSeats}/>
         </div>
       </div>
-
-
     </div>
     {
       selectedSeats.length!=0 && (<div className="flex justify-center items-center h-20 w-full fixed bottom-0 bg-slate-500">
