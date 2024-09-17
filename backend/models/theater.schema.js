@@ -26,6 +26,11 @@ const SeatSchema = new Schema({
 
 const auditoriumSchema = new mongoose.Schema({
     name: { type: String, required: true },
+    theater : {
+        type : Schema.Types.ObjectId,
+        ref : 'Theater',
+        required : true,
+    },
     seats: [SeatSchema],
   });
 

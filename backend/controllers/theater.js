@@ -2,7 +2,7 @@ import Theater from "../models/theater.schema.js";
 
 export const createTheater = async (req, res) => {
   const { theaterName, location, audis } = req.body;
-  const user = req.id;
+  const created_by = req.id;
 
   if (!theaterName || !location || !audis || audis.length === 0) {
     return res.status(400).json({
@@ -14,7 +14,7 @@ export const createTheater = async (req, res) => {
   try {
     const newTheater = new Theater({
       theaterName,
-      user,
+      created_by,
       location,
       audis,
     });
@@ -31,7 +31,7 @@ export const createTheater = async (req, res) => {
     res.status(500).json({
       success: false,
       message:
-        "Failed to create the theater. Please check the server logs for more information.",
+        "Failed to create the theater",
     });
   }
 };
@@ -40,9 +40,7 @@ export const updateTheater = async (req, res) => {
     const {theaterName, location, audis } = req.body;
     const {id} = req.params;
     const user = req.id;
-  
     
-  
     try {
       
         const theater = await Theater.findOne({_id : id,user});
@@ -78,18 +76,19 @@ export const updateTheater = async (req, res) => {
 export const getTheaters = async(req, res)=>{
   try {
     const id = req.id;
+    
 
-    const theater = await Theater.find({user: id});
+    const theaters = await Theater.find({created_by:id});
 
-    if(!theater){
-      return res.status(400).json({
-        message : 'Theater does not exist',
-        sucess : false,
-      })
+    if (!theaters || theaters.length === 0) {
+      return res.status(404).json({
+        message: 'No theaters found for this user',
+        success: false,
+      });
     }
 
     return res.status(200).json({
-      theater,
+      theaters,
       success : true,
     })
     
