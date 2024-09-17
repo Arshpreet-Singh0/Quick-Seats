@@ -57,9 +57,14 @@ const Theater = mongoose.model('Theater', TheaterSchema);
 export default Theater;
 
 
-const showtimeSchema = new mongoose.Schema({
+const showSchema = new mongoose.Schema({
     movie: { type: Schema.Types.ObjectId, ref : 'Movie', required: true },
     time: { type: String, required: true },
+    auditorium : {
+        type : Schema.Types.ObjectId,
+        ref : 'Auditorium',
+        required : true,
+    },
     theater: {
       type: Schema.Types.ObjectId,
       ref: "Theater",
@@ -75,4 +80,4 @@ const showtimeSchema = new mongoose.Schema({
     
   });
 
-export const ShowTime = mongoose.model("ShowTime", showtimeSchema);
+export const Show = mongoose.model("Show", showSchema);
