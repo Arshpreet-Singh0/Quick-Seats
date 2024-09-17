@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 // Define the Seat Schema
 const SeatSchema = new Schema({
-    seatRow: {
+    row: {
         type: String,
         required: true
     },
@@ -10,25 +10,28 @@ const SeatSchema = new Schema({
         type: String,
         required: true
     },
-    isAvailable: {
+    seatType: { 
+        type: String, required: true 
+    },
+    booked: {
         type: Boolean,
-        default: true
+        default: false
     },
     price: {
         type: Number,
         required: true
     }
-}, { _id: false });
-
-const AuditoriumSchema = new Schema({
-    audiName: {
-        type: String,
-        required: true
-    },
-    seats: [SeatSchema] // Embedding Seat Schema here
 });
 
-// Define the Theater Schema
+
+const auditoriumSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    seats: [SeatSchema],
+  });
+
+export const Auditorium = mongoose.model("Auditorium", auditoriumSchema);
+
+
 const TheaterSchema = new Schema({
     theaterName: {
         type: String,
@@ -38,13 +41,33 @@ const TheaterSchema = new Schema({
         type: String,
         required: true
     },
-    user : {
+    created_by : {
         type : Schema.Types.ObjectId,
         ref : 'User'
     },
-    audis: [AuditoriumSchema] // Embedding Auditorium Schema
 });
 
 const Theater = mongoose.model('Theater', TheaterSchema);
 
 export default Theater;
+
+
+const showtimeSchema = new mongoose.Schema({
+    movie: { type: Schema.Types.ObjectId, ref : 'Movie', required: true },
+    time: { type: String, required: true },
+    theater: {
+      type: Schema.Types.ObjectId,
+      ref: "Theater",
+      required: true,
+    },
+    seating: [{
+        row: { type: String, required: true },
+        seatNumber: { type: Number, required: true },
+        seatType: { type: String, required: true },
+        booked: { type: Boolean, default: false },  // Specific to this showtime
+        price: { type: Number, required: true }
+      }]
+    
+  });
+
+export const ShowTime = mongoose.model("ShowTime", showtimeSchema);
