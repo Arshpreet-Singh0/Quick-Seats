@@ -1,4 +1,4 @@
-import { Auditorium, Show } from "../models/theater.schema";
+import { Auditorium, Show } from "../models/theater.schema.js";
 
 export const createShow = async(req, res)=>{
     try {
@@ -12,12 +12,14 @@ export const createShow = async(req, res)=>{
                 success : false,
             })
         }
-        const show = new Show({
+        console.log(audi);
+        
+        const show = Show.create({
             movie: movie,
             time: time,
             theater,
             auditorium: auditorium,  
-            seating: auditorium.seats.map(seat => ({
+            seating: audi?.seats?.map(seat => ({
               row: seat.row,
               seatNumber: seat.seatNumber,
               seatType: seat.seatType,
@@ -25,6 +27,11 @@ export const createShow = async(req, res)=>{
               price: seat.price
             }))
           });
+
+        return res.status(200).json({
+          meassage : "Show cretaed sucessfully.",
+          success : true,
+        })
     } catch (error) {
         console.log(error);
         
@@ -32,31 +39,52 @@ export const createShow = async(req, res)=>{
 }
 
 export const getShows = async(req, res)=>{
-    const { location, movieName } = req.body;
+    const { location, movie } = req.body;
     const shows = await Show.find()
       .populate({
         path: 'theater',
-        match: { location },
-        select: 'name location',
       })
       .populate({
         path: 'movie',
-        match: { name: movieName }, 
+        match: { _id : movie }, 
         select: 'name', 
       })
       .exec();
 
-    const filteredShows = shows.filter(show => show.theater && show.movie);
+      console.log(shows);
+      
 
-    if (filteredShows.length === 0) {
-      return res.status(404).json({
-        message: 'No shows found for the given location and movie name',
-        success: false,
-      });
-    }
+    // const filteredShows = shows.filter(show => show.theater && show.movie);
+
+    // if (filteredShows.length === 0) {
+    //   return res.status(404).json({
+    //     message: 'No shows found for the given location and movie name',
+    //     success: false,
+    //   });
+    // }
 
     return res.status(200).json({
       success: true,
-      shows: filteredShows,
+      shows: shows,
     });
+}
+
+export const getShowbyId = async(req,res)=>{
+  try {
+    const {id} = req.params;
+
+    const show = await Show.findById(id).populate({
+      path : 'movie',
+    }).populate({
+      path : 'theater'
+    });
+
+    return res.status(200).json({
+      show,
+      success : true,
+    })
+  } catch (error) {
+    console.log(error);
+    
+  }
 }
