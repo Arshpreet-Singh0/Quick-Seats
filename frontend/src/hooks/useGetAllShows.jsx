@@ -4,16 +4,19 @@ import { useDispatch, useSelector} from 'react-redux'
 import { SHOWS_API_ENDPOINT } from '../utils/constant'
 import {setAllShows} from '../redux/showSlice.js'
 
-const useGetAllShows = () => {
+const useGetAllShows = (id,location) => {
     const dispatch = useDispatch();
     
 
-  useEffect((id,location)=>{
+  useEffect(()=>{
     console.log(id, location);
     
     const fetchAllShows = async()=>{
         try {
-            const res = await axios.get(`${SHOWS_API_ENDPOINT}/getshows`,{movie:id,location}, {withCredentials:true});
+            const res = await axios.get(`${SHOWS_API_ENDPOINT}/getshows`, {
+                params: { movie: id, location },
+                withCredentials: true
+              });
             // console.log(res?.data.shows); 
             
             if(res.data.success){
@@ -27,7 +30,7 @@ const useGetAllShows = () => {
         }
     }
     fetchAllShows();
-  },[])
+  },[id, location, dispatch])
 }
 
 export default useGetAllShows

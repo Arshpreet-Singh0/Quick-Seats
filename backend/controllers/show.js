@@ -47,8 +47,10 @@ export const createShow = async(req, res)=>{
 }
 
 export const getShows = async(req, res)=>{
-    const { location, movie } = req.body;
-    console.log(location, movie);
+    const { location, movie } = req.query;
+    console.log( movie);
+    console.log(location);
+    
     
     const shows = await Show.find()
       .populate({
@@ -62,11 +64,16 @@ export const getShows = async(req, res)=>{
       .exec();
 
       // console.log(shows);
-      // const filteredShows = shows.filter((show)=> (show.movie._id==movie && show.theater.location==location))
+      shows.map((s)=>{
+        console.log(s.theater.location);
+        
+      })
+      const filteredShows = shows.filter((show)=> (show.movie._id==movie && show.theater.location.toLowerCase()==location.toLowerCase()))
       
 
     // const filteredShows = shows.filter(show => show.theater && show.movie);
-
+      console.log(filteredShows);
+      
     // if (filteredShows.length === 0) {
     //   return res.status(404).json({
     //     message: 'No shows found for the given location and movie name',
@@ -76,7 +83,7 @@ export const getShows = async(req, res)=>{
 
     return res.status(200).json({
       success: true,
-      shows: shows,
+      shows: filteredShows,
     });
 }
 

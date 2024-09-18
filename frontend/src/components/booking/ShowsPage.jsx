@@ -13,6 +13,7 @@ const ShowsPage = () => {
   
   const {id} = useParams();
   
+  
   useGetAllShows(id,city);
   const {allShows} = useSelector(store=>store.shows);
   console.log(allShows);
@@ -44,7 +45,7 @@ const ShowsPage = () => {
 }
 
 const showsGroupedByTheater = groupShowsByTheaterName(allShows);
-// console.log(showsGroupedByTheater);
+console.log(showsGroupedByTheater);
 
 
 const extractUniqueDates = (data)=>{
@@ -77,10 +78,13 @@ const [showDate, setShowDate] = useState('');
   useEffect(() => {
     const findShowByDate = (data)=>{
       const filteredShows = [];
+      console.log(data);
+      
       data.forEach(theater => {
           theater.shows.forEach(show => {
             
               if (show.date === showDate) {
+                show.theater = theater.theaterName;
                   filteredShows.push(show);
               }
           });
