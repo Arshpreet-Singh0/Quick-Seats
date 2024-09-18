@@ -1,6 +1,6 @@
 import express from "express";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
-import { createMovie, getAllMovies, getMovieByname, updateMovie } from "../controllers/movie.js";
+import { createMovie, getAllMovies, getMovieById, updateMovie } from "../controllers/movie.js";
 
 
 const router = express.Router();
@@ -11,6 +11,6 @@ router.route('/:id/update').patch(updateMovie);
 
 router.route('/get').get(getAllMovies);
 
-router.route('/get/:name').get(getMovieByname);
+router.route('/get/:id').get(getMovieById);
 
 export default router

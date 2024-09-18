@@ -2,7 +2,7 @@ import { Auditorium, Show } from "../models/theater.schema.js";
 
 export const createShow = async(req, res)=>{
     try {
-        const {movie, time,theater,auditorium} = req.body;
+        const {movie,date, time,theater,auditorium} = req.body;
 
         const audi = await Auditorium.findById(auditorium);
 
@@ -14,9 +14,10 @@ export const createShow = async(req, res)=>{
         }
         console.log(audi);
         
-        const show = Show.create({
+        const show = await Show.create({
             movie: movie,
             time: time,
+            date,
             theater,
             auditorium: auditorium,  
             seating: audi?.seats?.map(seat => ({
@@ -27,6 +28,13 @@ export const createShow = async(req, res)=>{
               price: seat.price
             }))
           });
+
+          if(!show){
+            return res.status(200).json({
+              meassage : "All fiedls are required.",
+              success : false,
+            })
+          }
 
         return res.status(200).json({
           meassage : "Show cretaed sucessfully.",
@@ -40,18 +48,21 @@ export const createShow = async(req, res)=>{
 
 export const getShows = async(req, res)=>{
     const { location, movie } = req.body;
+    console.log(location, movie);
+    
     const shows = await Show.find()
       .populate({
         path: 'theater',
       })
       .populate({
         path: 'movie',
-        match: { _id : movie }, 
-        select: 'name', 
+        // match: { _id : movie }, 
+        // select: 'name', 
       })
       .exec();
 
-      console.log(shows);
+      // console.log(shows);
+      // const filteredShows = shows.filter((show)=> (show.movie._id==movie && show.theater.location==location))
       
 
     // const filteredShows = shows.filter(show => show.theater && show.movie);

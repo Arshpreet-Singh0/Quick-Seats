@@ -60,6 +60,7 @@ export default Theater;
 const showSchema = new mongoose.Schema({
     movie: { type: Schema.Types.ObjectId, ref : 'Movie', required: true },
     time: { type: String, required: true },
+    date  : { type: String, required: true },
     auditorium : {
         type : Schema.Types.ObjectId,
         ref : 'Auditorium',

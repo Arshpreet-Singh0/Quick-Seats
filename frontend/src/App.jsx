@@ -20,8 +20,8 @@ const App = () => {
           <Route path="/login" element={<Form initialTab={0} />} />
           <Route path="/register" element={<Form initialTab={1} />} />
           <Route path='/allmovies' element={<MoviePage />} />
-          <Route path='/movie/:name' element={<MovieDetailsPage />} />
-          <Route path='/movie/:name/shows' element={<ShowsPage />} />
+          <Route path='/movie/:id' element={<MovieDetailsPage />} />
+          <Route path='/movie/:id/shows' element={<ShowsPage />} />
           <Route path='/book/:id' element={<SeatPage />} />
         </Routes>
         

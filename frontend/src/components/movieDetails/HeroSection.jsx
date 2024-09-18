@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = ({ movie }) => {
-  console.log(movie);
+  // console.log(movie);
   
   const navigate = useNavigate();
   const handleClick = (id)=>{

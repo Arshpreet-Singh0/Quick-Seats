@@ -7,6 +7,7 @@ const Shows = ({ allShow }) => {
   const handleShowTimeClick = (id) => {
     navigate(`/book/${id}`);
   };
+  
 
   return (
     <div className="">
@@ -35,16 +36,13 @@ const Shows = ({ allShow }) => {
 
             {/* Showtimes */}
             <div className="flex-1 flex flex-wrap md:flex-row gap-2 md:gap-4 overflow-auto">
-              {item.shows &&
-                item.shows.map((show, idx) => (
                   <div
                     key={idx}
                     onClick={() => handleShowTimeClick(show.show_id)}
                     className="border py-[8px] w-24 text-center text-green-300 hover:bg-white hover:text-black mt-2 cursor-pointer"
                   >
-                    {show.time}
+                    {item.time}
                   </div>
-                ))}
             </div>
           </div>
         ))}

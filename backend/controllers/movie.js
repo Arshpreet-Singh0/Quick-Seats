@@ -114,11 +114,11 @@ export const getAllMovies = async(req, res)=>{
   }
 }
 
-export const getMovieByname = async(req, res)=>{
+export const getMovieById = async(req, res)=>{
   try {
-    const {name} = req.params;
+    const {id} = req.params;
 
-    const movie = await Movie.findOne({name});
+    const movie = await Movie.findById(id);
 
     if(!movie){
       return res.status(200).json({

@@ -12,7 +12,7 @@ const useGetAllMovies = () => {
     const fetchAllMovies = async()=>{
         try {
             const res = await axios.get(`${MOVIE_API_ENDPOINT}/get`, {withCredentials:true});
-            console.log(res?.data);
+            // console.log(res?.data);
             
             if(res.data.success){
                 dispatch(setAllMovies(res?.data?.movies));

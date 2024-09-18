@@ -33,7 +33,7 @@ const fetchCityName = async (lat, lng) => {
     );
     
     if (response.data && response.data.address) {
-      console.log(response.data.address.city);
+      // console.log(response.data.address.city);
       return response.data.address.city;
     }
   } catch (err) {

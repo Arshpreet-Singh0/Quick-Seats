@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 const Card = ({movie}) => {
   const navigate = useNavigate();
-  const handleClick = (name)=>{
-      navigate(`/movie/${name}`);
+  const handleClick = (id)=>{
+      
+      navigate(`/movie/${id}`);
   }
   return (
     <div className=' w-80 h-full rounded-2xl bg-[#1d1d1d] m-5 text-white'>
@@ -21,7 +22,7 @@ releaseDate.slice(0,10)
 
             </div>
             <p className='text-sm opacity-90 p-1'><span className='opacity-55'>Language :</span> {movie.language}</p>
-            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2' onClick={()=>handleClick(movie.name)}>See Details</button>
+            <button className='p-2 bg-[#ff7300] w-full rounded-lg mt-2' onClick={()=>handleClick(movie._id)}>See Details</button>
         </div>
 
     </div>

@@ -9,7 +9,7 @@ const AllMovies = () => {
 
     
   return (
-    <div className='flex md:px-10 flex-wrap '>
+    <div className='flex items-center justify-center md:px-10 flex-wrap '>
         {
             allMovies.map((movie, idx)=>{
                 return <Card key={idx} movie={movie} />

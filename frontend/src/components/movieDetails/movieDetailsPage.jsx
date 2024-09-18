@@ -10,7 +10,8 @@ import { MOVIE_API_ENDPOINT } from '../../utils/constant.js';
 
 
 const MovieDetailsPage = () => {
-  const { name } = useParams();
+  const { id } = useParams();
+
   // const dispatch  = useDispatch();
   
   const [movie, setMovie] = useState(null);
@@ -18,10 +19,10 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const res = await axios.get(`${MOVIE_API_ENDPOINT}/get/${name}`, {
+        const res = await axios.get(`${MOVIE_API_ENDPOINT}/get/${id}`, {
           withCredentials: true
         });
-        console.log(res?.data?.movie);
+        // console.log(res);
         
         if (res?.data?.success) {
           setMovie(res?.data?.movie);
