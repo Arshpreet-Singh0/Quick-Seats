@@ -1,12 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col items-center justify-center border-t text-white bg-[#1e1e1e]'>
         <div className='hidden md:flex justify-center items-center mt-5 w-full bg-gray-900 h-16 '>
             <p className='opacity-75'><span className='mr-3'><b>List your Show Now</b></span> Got a show, event, activity or a great experience? Partner with us & get listed on QuickSeats</p>
 
-            <button className='md:ml-24 bg-[#ff7300] p-2 rounded-lg'>Create Account now!</button>
+            <button onClick={()=>navigate('/admin/signup')} className='md:ml-24 bg-[#ff7300] p-2 rounded-lg'>Create Account now!</button>
         </div> 
 
         <div className='mt-5 w-[80%] text-center mb-5'>
