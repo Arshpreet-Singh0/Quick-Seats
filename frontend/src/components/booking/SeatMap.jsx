@@ -1,13 +1,13 @@
 import React from 'react';
 
 const SeatMap = ({ seatData, handleSeatClick, selectedSeats}) => {
-  console.log(seatData.seating); // Log seating data for debugging
+  // console.log(seatData.seating); // Log seating data for debugging
 
   let previousSeatType = null; // Track the previous row's seat type
 
   return (
     <div className='p-4'>
-      {Object.keys(seatData.seating).map((row, rowIndex) => {
+      {Object.keys(seatData?.seating).map((row, rowIndex) => {
         const currentSeatType = seatData.seating[row][0]?.seatType || '';
 
         // Check if the seat type has changed

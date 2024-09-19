@@ -1,13 +1,13 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { MOVIE_API_ENDPOINT } from '../utils/constant'
+import { MOVIE_API_ENDPOINT, SHOWS_API_ENDPOINT } from '../utils/constant'
 import { setAllMovies } from '../redux/movieSlice'
+import { useParams } from "react-router-dom";
 
 const useGetAllMovies = () => {
     const dispatch = useDispatch();
     
-
   useEffect(()=>{
     const fetchAllMovies = async()=>{
         try {

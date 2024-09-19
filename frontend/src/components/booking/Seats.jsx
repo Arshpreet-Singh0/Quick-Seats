@@ -82,7 +82,7 @@ const seatData = {
 };
 
 
-function Seats() {
+function Seats({seatData}) {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -103,8 +103,8 @@ function Seats() {
       }
     }
   };
-  console.log(totalPrice);
-  console.log(selectedSeats);
+  // console.log(totalPrice);
+  // console.log(selectedSeats);
   
   
 
@@ -113,9 +113,10 @@ function Seats() {
     <div className="w-full text-white mb-28">
       <div className="flex flex-col items-center justify-center mt-10 w-full">
         <div className="w-[70%] p-2">
-            <h1 className="text-2xl mb-1">{seatData.movie}</h1>
-            <p className="text-sm mb-1">{seatData.theater}</p>
-            <p className="text-sm">{seatData.time}</p>
+            <h1 className="text-2xl mb-1">{seatData?.movie?.name}</h1>
+            <p className="text-sm mb-1">{seatData?.theater?.
+theaterName}</p>
+            <p className="text-sm">{seatData?.time}</p>
         </div>
         <div className="h-10 bg-slate-800 w-full"></div>
 

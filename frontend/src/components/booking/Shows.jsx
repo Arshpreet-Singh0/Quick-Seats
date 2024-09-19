@@ -7,7 +7,7 @@ const Shows = ({ allShow }) => {
   const handleShowTimeClick = (id) => {
     navigate(`/book/${id}`);
   };
-  console.log(allShow);
+  // console.log(allShow);
   
   
 

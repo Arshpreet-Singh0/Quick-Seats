@@ -48,10 +48,11 @@ export const createShow = async(req, res)=>{
 
 export const getShows = async(req, res)=>{
     const { location, movie } = req.query;
-    console.log( movie);
-    console.log(location);
-    
-    
+    // console.log( movie);
+    // console.log(location);
+    // location = "Chandigarh"
+   
+   
     const shows = await Show.find()
       .populate({
         path: 'theater',
@@ -59,20 +60,24 @@ export const getShows = async(req, res)=>{
       .populate({
         path: 'movie',
         // match: { _id : movie }, 
-        // select: 'name', 
+        // select: 'name',
       })
       .exec();
 
       // console.log(shows);
-      shows.map((s)=>{
-        console.log(s.theater.location);
+      // shows.map((s)=>{
+      //   console.log(s.theater.location);
         
-      })
+      // })
       const filteredShows = shows.filter((show)=> (show.movie._id==movie && show.theater.location.toLowerCase()==location.toLowerCase()))
+      
+      // console.log(filteredShows);
       
 
     // const filteredShows = shows.filter(show => show.theater && show.movie);
-      console.log(filteredShows);
+      // console.log(filteredShows);
+      // console.log("hi");
+      
       
     // if (filteredShows.length === 0) {
     //   return res.status(404).json({

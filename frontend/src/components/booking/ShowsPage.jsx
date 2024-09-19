@@ -13,12 +13,13 @@ const ShowsPage = () => {
   
   const {id} = useParams();
   
-  
-  useGetAllShows(id,city);
+  if(city!==null){
+    useGetAllShows(id,city);
+
+  }
   const {allShows} = useSelector(store=>store.shows);
-  console.log(allShows);
-  
   // console.log(allShows);
+  
 
   const groupShowsByTheaterName = (shows)=>{
     const grouped = {};
@@ -93,13 +94,14 @@ const [showDate, setShowDate] = useState('');
       return filteredShows;
   }
     const shows = findShowByDate(showsGroupedByTheater);
-    console.log(shows);
+    // console.log(shows);
     
     setCurrDateShows(shows);
     
   }, [showDate]);
 
   // console.log(currDateShows);
+
 
   return (
     <div className="w-full">
