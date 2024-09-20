@@ -10,6 +10,7 @@ const Login = () => {
   const [input, setInput] = useState({
     email : "",
     password : "",
+    role : ""
   })
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,6 +54,17 @@ const Login = () => {
       <div>
       <input type="password" className="bg-inherit border rounded-xl w-full p-2 mb-10"
         id="pass" name="password" value={input.password} onChange={handleChange} placeholder="Password"/>
+      </div>
+
+      <div className="mb-10">
+        <input type="radio" id="user" name="role" value="user" checked={input.role === 'user'}
+        onChange={(e) => setInput({ ...input, role: e.target.value })}/>
+        <label htmlFor="user" className="ml-3">User</label>
+
+        <input type="radio" id="admin" className="ml-4" name="role" value="admin" checked={input.role === 'admin'}
+        onChange={(e) => setInput({ ...input, role: e.target.value })}/>
+        <label htmlFor="admin" className="ml-3">Admin</label>
+
       </div>
 
       <button className="w-full bg-[#ff7300] p-2 rounded-xl">Login</button>

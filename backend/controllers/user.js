@@ -9,7 +9,7 @@ const secret = process.env.SECRET_KEY;
 export const signUp = async (req,res) => {
   try {
     
-    const { username, email, password } = req.body;
+    const { username, email, password,role } = req.body;
     
 
     if (!username || !email || !password) {
@@ -34,6 +34,7 @@ export const signUp = async (req,res) => {
       username,
       email,
       password: hashedPassword,
+      role
     });
 
     return res.status(200).json({
@@ -47,7 +48,7 @@ export const signUp = async (req,res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role} = req.body;
     
 
     if (!email || !password) {
@@ -75,6 +76,12 @@ export const login = async (req, res) => {
         success: false,
       });
     }
+    if(user.role != role){
+      return res.status(400).json({
+        message: "Account does not exist with selected role",
+        success: false,
+      });
+    }
 
     const tokenData = {
       userId: user._id,
@@ -87,7 +94,8 @@ export const login = async (req, res) => {
     user = {
       user_id : user._id,
       username : user.username,
-      email : user.email
+      email : user.email,
+      role : user.role,
     }
 
     return res.status(200).cookie("token", token, {
