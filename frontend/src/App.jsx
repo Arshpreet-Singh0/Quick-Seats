@@ -9,6 +9,8 @@ import MovieDetailsPage from './components/movieDetails/movieDetailsPage.jsx';
 import Shows from './components/booking/Shows.jsx';
 import ShowsPage from './components/booking/ShowsPage.jsx';
 import SeatPage from './components/booking/SeatPage.jsx';
+import AdminTheaters from './components/admin/AdminTheaters.jsx';
+import CreateTheater from './components/admin/CreateTheater.jsx';
 
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
           <Route path='/movie/:id' element={<MovieDetailsPage />} />
           <Route path='/movie/:id/shows' element={<ShowsPage />} />
           <Route path='/book/:id' element={<SeatPage />} />
+          <Route path='/admin/theaters' element={<AdminTheaters />} />
+          <Route path='/admin/theaters/create' element={<CreateTheater />} />
         </Routes>
         
       </>

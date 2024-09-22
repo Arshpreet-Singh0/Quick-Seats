@@ -1,10 +1,10 @@
 import Theater from "../models/theater.schema.js"; 
 
 export const createTheater = async (req, res) => {
-  const { theaterName, location, audis } = req.body;
+  const { theaterName, location} = req.body;
   const created_by = req.id;
 
-  if (!theaterName || !location || !audis || audis.length === 0) {
+  if (!theaterName || !location ) {
     return res.status(400).json({
       success: false,
       message: "Missing required fields.",
@@ -16,7 +16,6 @@ export const createTheater = async (req, res) => {
       theaterName,
       created_by,
       location,
-      audis,
     });
 
     const savedTheater = await newTheater.save();
@@ -76,16 +75,8 @@ export const updateTheater = async (req, res) => {
 export const getTheaters = async(req, res)=>{
   try {
     const id = req.id;
-    
 
     const theaters = await Theater.find({created_by:id});
-
-    if (!theaters || theaters.length === 0) {
-      return res.status(404).json({
-        message: 'No theaters found for this user',
-        success: false,
-      });
-    }
 
     return res.status(200).json({
       theaters,
