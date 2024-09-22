@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TheaterTable = ({ theaters }) => {
+const AudisTable = ({ audis }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const navigate = useNavigate();
 
@@ -15,19 +15,15 @@ const TheaterTable = ({ theaters }) => {
       <table className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg">
         <thead>
           <tr className="bg-gray-700">
-            <th className="py-3 px-6 text-left">Theater Name</th>
-            <th className="py-3 px-6 text-left">Location</th>
+            <th className="py-3 px-6 text-left">Audi Name</th>
             <th className="py-3 px-6 text-right">Action</th>
           </tr>
         </thead>
-        {theaters?.map((theater, index) => (
+        {audis?.map((audi, index) => (
           <tbody key={index}>
             <tr className="bg-gray-800 hover:bg-gray-900 transition-colors">
               <td className="py-3 px-6 border-b border-gray-700">
-                {theater.theaterName}
-              </td>
-              <td className="py-3 px-6 border-b border-gray-700">
-                {theater.location}
+                {audi.name}
               </td>
               <td className="py-3 px-4 border-b text-right border-gray-700 relative">
                 <button
@@ -43,7 +39,7 @@ const TheaterTable = ({ theaters }) => {
                       className="block w-full text-left py-2 px-4 hover:bg-gray-600 rounded-lg text-white"
                       onClick={() => navigate(`/theater/${theater._id}/audis`)}
                     >
-                      Go to Audis
+                      View Seats
                     </button>
                     <button
                       className="block w-full text-left py-2 px-4 hover:bg-gray-600 rounded-lg text-white"
@@ -68,4 +64,4 @@ const TheaterTable = ({ theaters }) => {
   );
 };
 
-export default TheaterTable;
+export default AudisTable;

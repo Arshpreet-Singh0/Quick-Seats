@@ -1,30 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { THEATER_API_ENDPOINT } from '../../utils/constant';
-import TheaterTable from './TheaterTable';
-import { useNavigate } from 'react-router-dom';
+import { AUDITORIUM_API_ENDPOINT, THEATER_API_ENDPOINT } from '../../../utils/constant';
+import { useNavigate, useParams } from 'react-router-dom';
+import Navbar from '../../shared/Navbar';
+import AudisTable from './AuidisTable';
 
-const AllTheaters = () => {
-    const [allTheaters, setAllTheaters] = useState([]);
+const Audis = () => {
+    const [audis, setAudis] = useState([]);
     const {user} = useSelector(store=>store.auth);
     const navigate = useNavigate();
+    const {id} = useParams();
 
-    const handleClick = ()=>{
-        navigate('/admin/theaters/create')
-    }
-    
+  
 
     useEffect(()=>{
-        const fetchTheaters = async()=>{
+        const fetchAudis = async()=>{
             try {
-                const res = await axios.get(`${THEATER_API_ENDPOINT}/get`,{
+                const res = await axios.post(`${AUDITORIUM_API_ENDPOINT}/get`,{theater:id},{
                     withCredentials : true,
                 })
     
-                // console.log(res?.data?.theaters);
+                // console.log(res);
                 if(res?.data?.success){
-                    setAllTheaters(res?.data?.theaters)
+                    setAudis(res?.data?.auditoriums)
                 }
                 
             } catch (error) {
@@ -32,23 +31,26 @@ const AllTheaters = () => {
                 
             }
         };
-        fetchTheaters();
+        fetchAudis();
     },[]);
   return (
+    <>
+    <Navbar />
     <div className='p-4'>
         <div className='flex justify-center w-full text-white mb-10 mt-5'>
             <div className='flex justify-between w-[70%]'>
             <input type="text" className='bg-gray-500 p-1 px-3 rounded-md placeholder:text-white focus:border-none' placeholder='Filter by name' />
 
-            <button onClick={handleClick} className='bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-md'>New Theater</button>
+            <button onClick={()=>navigate(`/${id}/audi/create`)} className='bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-md'>New Auditorium</button>
         </div>
         </div>
         <div className='flex justify-center w-full'>
-            <TheaterTable theaters={allTheaters} />
+            <AudisTable audis={audis} />
 
         </div>
     </div>
+    </>
   )
 }
 
-export default AllTheaters
+export default Audis

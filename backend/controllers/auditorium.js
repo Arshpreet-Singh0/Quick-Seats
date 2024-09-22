@@ -35,12 +35,12 @@ export const getAudis = async (req, res) => {
     const {theater} = req.body;
     const auditoriums = await Auditorium.find({theater});
 
-    if (!auditoriums || auditoriums.length === 0) {
-      return res.status(404).json({
-        message: "No auditoriums found",
-        success: false,
-      });
-    }
+    // if (!auditoriums || auditoriums.length === 0) {
+    //   return res.status(404).json({
+    //     message: "No auditoriums found",
+    //     success: false,
+    //   });
+    // }
     return res.status(200).json({
       success: true,
       auditoriums,

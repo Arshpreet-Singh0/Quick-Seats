@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/create',isAuthenticated,createAudi);
 
 
-router.get('/get', isAuthenticated, getAudis);
+router.post('/get', isAuthenticated, getAudis);
 
 
 router.get('/get/:id', isAuthenticated, getAudiById);

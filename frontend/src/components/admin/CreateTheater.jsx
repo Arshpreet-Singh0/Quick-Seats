@@ -3,7 +3,7 @@ import Navbar from '../shared/Navbar'
 import axios from 'axios';
 import { THEATER_API_ENDPOINT } from '../../utils/constant';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const CreateTheater = () => {
     const [input, setInput] = useState({
@@ -26,12 +26,12 @@ const CreateTheater = () => {
             console.log(res);
 
             if(res?.data?.success){
-                toast.success(res.data.message || "Login successful!");
+                toast.success(res.data.message || "");
                 setTimeout(() => {
                     navigate('/admin/theaters');
                   }, 2000);
             }else {
-                toast.error(res.data.message || "Login failed!");
+                toast.error(res.data.message || "");
               }
             
 
