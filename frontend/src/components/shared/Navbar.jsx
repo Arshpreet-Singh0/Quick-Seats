@@ -65,9 +65,9 @@ const Navbar = () => {
                     <li className="cursor-pointer">
                       <Link to={"/admin/theaters"}>Theaters</Link>
                     </li>
-                    <li className="cursor-pointer">
-                      <Link to={"/admin/manageusers"}>Manage Users</Link>
-                    </li>
+                    {/* <li className="cursor-pointer">
+                      <Link to={"/admin/shows"}>Shows</Link>
+                    </li> */}
                     <li className="cursor-pointer">
                       <Link to={"/admin/settings"}>Settings</Link>
                     </li>

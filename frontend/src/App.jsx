@@ -13,6 +13,7 @@ import AdminTheaters from './components/admin/AdminTheaters.jsx';
 import CreateTheater from './components/admin/CreateTheater.jsx';
 import Audis from './components/admin/audis/Audis.jsx';
 import CreateAudi from './components/admin/audis/CreateAudi.jsx';
+import AllShows from './components/admin/shows/AllShows.jsx';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route path='/admin/theaters/create' element={<CreateTheater />} />
           <Route path='/theater/:id/audis' element={<Audis />} />
           <Route path='/:id/audi/create' element={<CreateAudi />} />
+          <Route path='/:audiid/shows' element={<AllShows />} />
         </Routes>
         
       </>

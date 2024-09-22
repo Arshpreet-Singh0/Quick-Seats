@@ -111,3 +111,28 @@ export const getShowbyId = async(req,res)=>{
     
   }
 }
+
+//getshows by audi id
+
+export const getShowByAudiId = async(req, res)=>{
+  try {
+    const {audiid} = req.params;
+    
+
+    const shows = await Show.find({auditorium : audiid}).populate({
+      path : 'movie',
+    }).populate({
+      path : 'auditorium'
+    }).populate({
+      path : 'theater',
+    });
+
+    return res.status(200).json({
+      success : true,
+      shows,
+    })
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
